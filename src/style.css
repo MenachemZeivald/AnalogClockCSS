@@ -1,0 +1,98 @@
+:root {
+  --sec-length: 60s;
+  --min-length: calc(var(--sec-length) * 60);
+  --hour-length: calc(var(--min-length) * 12);
+}
+
+@-webkit-keyframes Move {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes Move {
+  to {
+    transform: rotate(360deg);
+  }
+}
+body {
+  margin: 0;
+}
+body .clock-container {
+  margin: 0;
+  height: 100vh;
+  background-color: lightyellow;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body .clock-container .clock-body {
+  position: relative;
+  background-color: rgb(249, 243, 160);
+  height: 200px;
+  width: 200px;
+  border-radius: 100%;
+  border: 2px solid grey;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+body .clock-container .clock-body .hours6,
+body .clock-container .clock-body .hours12 {
+  background-color: gray;
+  height: 15px;
+  width: 2px;
+  border-radius: 10px;
+  margin: 3px;
+}
+body .clock-container .clock-body .hours6 {
+  align-self: flex-end;
+}
+body .clock-container .clock-body .middle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+body .clock-container .clock-body .middle .hours3,
+body .clock-container .clock-body .middle .hours9 {
+  background-color: gray;
+  height: 15px;
+  width: 2px;
+  border-radius: 10px;
+  margin: 3px;
+  transform: rotate(90deg);
+  margin: 10px;
+}
+body .clock-container .clock-body .middle .point {
+  background-color: grey;
+  height: 6px;
+  width: 6px;
+  border-radius: 100%;
+}
+body .clock-container .clock-body .hrs-line,
+body .clock-container .clock-body .min-line,
+body .clock-container .clock-body .sec-line {
+  position: absolute;
+  margin-top: 18px;
+  height: 160px;
+  border-radius: 15px;
+}
+body .clock-container .clock-body .hrs-line {
+  width: 7px;
+  background-image: linear-gradient(black 50%, rgba(211, 211, 211, 0) 50%);
+  -webkit-animation: Move var(--hour-length) linear infinite;
+          animation: Move var(--hour-length) linear infinite;
+}
+body .clock-container .clock-body .min-line {
+  background-image: linear-gradient(blue 50%, rgba(211, 211, 211, 0) 50%);
+  width: 4px;
+  -webkit-animation: Move var(--min-length) linear infinite;
+          animation: Move var(--min-length) linear infinite;
+}
+body .clock-container .clock-body .sec-line {
+  background-image: linear-gradient(gray 50%, rgba(166, 0, 0, 0) 50%);
+  width: 3px;
+  -webkit-animation: Move var(--sec-length) linear infinite;
+          animation: Move var(--sec-length) linear infinite;
+}/*# sourceMappingURL=style.css.map */

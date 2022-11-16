@@ -1,0 +1,105 @@
+:root {
+  --sec-length: 60s;
+  --min-length: calc(var(--sec-length) * 60);
+  --hour-length: calc(var(--min-length) * 12);
+}
+
+@keyframes Move {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@mixin hours-tag {
+  background-color: gray;
+  height: 15px;
+  width: 2px;
+  border-radius: 10px;
+  margin: 3px;
+}
+
+@mixin move-animation($length) {
+  animation: Move $length linear infinite;
+}
+
+body {
+  margin: 0;
+
+  .clock-container {
+    margin: 0;
+    height: 100vh;
+    background-color: lightyellow;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .clock-body {
+      position: relative;
+      background-color: rgb(249, 243, 160);
+      height: 200px;
+      width: 200px;
+      border-radius: 100%;
+      border: 2px solid grey;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      .hours6,
+      .hours12 {
+        @include hours-tag;
+      }
+
+      .hours6 {
+        align-self: flex-end;
+      }
+
+      .middle {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .hours3,
+        .hours9 {
+          @include hours-tag;
+          transform: rotate(90deg);
+          margin: 10px;
+        }
+
+        .point {
+          background-color: grey;
+          height: 6px;
+          width: 6px;
+          border-radius: 100%;
+        }
+      }
+
+      .hrs-line,
+      .min-line,
+      .sec-line {
+        position: absolute;
+        margin-top: 18px;
+        height: 160px;
+        border-radius: 15px;
+      }
+
+      .hrs-line {
+        width: 7px;
+        background-image: linear-gradient(black 50%, rgb(211, 211, 211, 0) 50%);
+        @include move-animation(var(--hour-length));
+      }
+
+      .min-line {
+        background-image: linear-gradient(blue 50%, rgb(211, 211, 211, 0) 50%);
+        width: 4px;
+        @include move-animation(var(--min-length));
+      }
+
+      .sec-line {
+        background-image: linear-gradient(gray 50%, rgba(166, 0, 0, 0) 50%);
+        width: 3px;
+        @include move-animation(var(--sec-length));
+      }
+    }
+  }
+}
