@@ -5,6 +5,9 @@
 }
 
 @keyframes Move {
+  from {
+    transform: rotate(0deg);
+  }
   to {
     transform: rotate(360deg);
   }
@@ -74,10 +77,17 @@ body {
         }
       }
 
+      
+      .hrs-line-container,
+      .min-line-container,
+      .sec-line-container {
+        position:absolute;
+        height: 200px;
+      }
+
       .hrs-line,
       .min-line,
       .sec-line {
-        position: absolute;
         margin-top: 18px;
         height: 160px;
         border-radius: 15px;

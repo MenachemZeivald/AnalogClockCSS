@@ -5,12 +5,18 @@
 }
 
 @-webkit-keyframes Move {
+  from {
+    transform: rotate(0deg);
+  }
   to {
     transform: rotate(360deg);
   }
 }
 
 @keyframes Move {
+  from {
+    transform: rotate(0deg);
+  }
   to {
     transform: rotate(360deg);
   }
@@ -70,10 +76,15 @@ body .clock-container .clock-body .middle .point {
   width: 6px;
   border-radius: 100%;
 }
+body .clock-container .clock-body .hrs-line-container,
+body .clock-container .clock-body .min-line-container,
+body .clock-container .clock-body .sec-line-container {
+  position: absolute;
+  height: 200px;
+}
 body .clock-container .clock-body .hrs-line,
 body .clock-container .clock-body .min-line,
 body .clock-container .clock-body .sec-line {
-  position: absolute;
   margin-top: 18px;
   height: 160px;
   border-radius: 15px;
