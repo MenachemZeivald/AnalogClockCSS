@@ -1,15 +1,33 @@
 :root {
-  --sec-length: 60s;
-  --min-length: calc(var(--sec-length) * 60);
   --hour-length: calc(var(--min-length) * 12);
+  --min-length: calc(var(--sec-length) * 60);
+  --sec-length: 60s;
 }
 
-@keyframes Move {
+@keyframes Move-hour {
   from {
-    transform: rotate(0deg);
+    transform: rotate(var(--hour-start-at));
   }
   to {
-    transform: rotate(360deg);
+    transform: rotate(calc(var(--hour-start-at) + 360deg));
+  }
+}
+
+@keyframes Move-min {
+  from {
+    transform: rotate(var(--min-start-at));
+  }
+  to {
+    transform: rotate(calc(var(--min-start-at) + 360deg));
+  }
+}
+
+@keyframes Move-sec {
+  from {
+    transform: rotate(var(--sec-start-at));
+  }
+  to {
+    transform: rotate(calc(var(--sec-start-at) + 360deg));
   }
 }
 
@@ -21,8 +39,8 @@
   margin: 3px;
 }
 
-@mixin move-animation($length) {
-  animation: Move $length linear infinite;
+@mixin move-animation($animation-name, $length) {
+  animation: $animation-name $length linear infinite;
 }
 
 body {
@@ -77,17 +95,10 @@ body {
         }
       }
 
-      
-      .hrs-line-container,
-      .min-line-container,
-      .sec-line-container {
-        position:absolute;
-        height: 200px;
-      }
-
       .hrs-line,
       .min-line,
       .sec-line {
+        position: absolute;
         margin-top: 18px;
         height: 160px;
         border-radius: 15px;
@@ -96,19 +107,19 @@ body {
       .hrs-line {
         width: 7px;
         background-image: linear-gradient(black 50%, rgb(211, 211, 211, 0) 50%);
-        @include move-animation(var(--hour-length));
+        @include move-animation(Move-hour ,var(--hour-length));
       }
 
       .min-line {
         background-image: linear-gradient(blue 50%, rgb(211, 211, 211, 0) 50%);
         width: 4px;
-        @include move-animation(var(--min-length));
+        @include move-animation(Move-min, var(--min-length));
       }
 
       .sec-line {
         background-image: linear-gradient(gray 50%, rgba(166, 0, 0, 0) 50%);
         width: 3px;
-        @include move-animation(var(--sec-length));
+        @include move-animation(Move-sec ,var(--sec-length));
       }
     }
   }

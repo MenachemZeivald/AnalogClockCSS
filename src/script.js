@@ -1,9 +1,7 @@
-let hrs = document.querySelector('.hrs-line-container')
-let min = document.querySelector('.min-line-container')
-let sec = document.querySelector('.sec-line-container')
-let minute = 360 / 60;
+let date = new Date();
+let r = document.querySelector(':root');
 
 // create initial state
-hrs.style.transform = 'rotate(' + (((Date().slice(16, 18) % 12)*60) + 1 * Date().slice(19, 21)) * (360 / (12 * 60)) + 'deg)'
-sec.style.transform = 'rotate(' + (Date().slice(22, 24) * minute) + 'deg)'
-min.style.transform = 'rotate(' + (Date().slice(19, 21) * minute) + 'deg)'
+r.style.setProperty('--hour-start-at', `${(date.getHours() * 30) + (date.getMinutes() / 2)}deg`);
+r.style.setProperty('--min-start-at', `${date.getMinutes() * 360 / 60}deg`);
+r.style.setProperty('--sec-start-at', `${date.getSeconds() * 360 / 60}deg`);
